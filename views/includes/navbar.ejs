@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-md sticky-top">
+  <div class="container d-flex justify-content-between align-items-center py-1">
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-regular fa-compass"></i>
+      Heaven Stays
+    </a>
+    
+    <!-- Airbnb Search Pill -->
+    <form method="GET" action="/listings" class="d-none d-md-flex search-pill shadow-sm align-items-center rounded-pill border bg-white" style="height: 48px;">
+        <div class="search-item fw-bold px-3 py-2 cursor-pointer hover-bg-light rounded-pill-start h-100 d-flex align-items-center">Anywhere</div>
+        <div class="search-divider border-end h-50"></div>
+        <div class="search-item fw-bold px-3 py-2 cursor-pointer hover-bg-light h-100 d-flex align-items-center">Any week</div>
+        <div class="search-divider border-end h-50"></div>
+        <div class="search-item text-muted px-2 py-2 cursor-pointer hover-bg-light h-100 d-flex align-items-center rounded-pill-end">
+            <input type="text" name="location" placeholder="Search destinations" class="border-0 bg-transparent" style="outline: none; width: 140px; font-size: 0.9rem;">
+            <button type="submit" class="search-icon-wrapper ms-2 text-white rounded-circle d-flex align-items-center justify-content-center border-0" style="width: 32px; height: 32px;">
+                <i class="fa-solid fa-magnifying-glass" style="font-size: 0.8rem;"></i>
+            </button>
+        </div>
+    </form>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarNavAltMarkup">
+      <div class="navbar-nav align-items-center">
+        <a class="nav-link me-2 fw-bold rounded-pill px-3 py-2 hover-bg-light" href="/listings/new" style="font-size: 0.95rem;">Airbnb your home</a>
+        <a class="nav-link me-3 rounded-circle d-flex align-items-center justify-content-center hover-bg-light" href="#" style="width: 40px; height: 40px;"><i class="fa-solid fa-globe"></i></a>
+        
+        <!-- Profile Dropdown -->
+        <div class="dropdown">
+          <button class="profile-menu btn dropdown-toggle border rounded-pill shadow-sm d-flex align-items-center gap-2 px-2 py-1 hover-shadow" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background: white;">
+            <i class="fa-solid fa-bars ms-1"></i>
+            <div class="user-avatar bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 30px; height: 30px;">
+                <i class="fa-solid fa-user" style="font-size: 0.9rem;"></i>
+            </div>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 mt-2 py-2" style="min-width: 240px;">
+            <li><a class="dropdown-item fw-bold py-2 px-3" href="#">Sign up</a></li>
+            <li><a class="dropdown-item py-2 px-3" href="#">Log in</a></li>
+            <li><hr class="dropdown-divider my-1"></li>
+            <li><a class="dropdown-item py-2 px-3" href="/listings/new">Airbnb your home</a></li>
+            <li><a class="dropdown-item py-2 px-3" href="#">Help Center</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

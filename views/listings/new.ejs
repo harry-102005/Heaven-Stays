@@ -1,0 +1,70 @@
+<%layout("/layouts/boilerplate")%>
+
+<div class="row mt-4 mb-5">
+    <div class="col-8 offset-2">
+        <h3 class="mb-4">Create a New Listing</h3>
+        
+        <div class="card p-4 shadow-sm border-0 rounded-4">
+            <form method="POST" action="/listings" novalidate class="needs-validation">
+                
+                <div class="mb-4">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" name="listing[title]" placeholder="e.g. Beautiful Beachfront Villa" required>
+                    <div class="invalid-feedback">Please enter a catchy title.</div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="listing[description]" class="form-control" placeholder="Describe what makes your place special..." rows="4" required></textarea>
+                    <div class="invalid-feedback">Please enter a short description.</div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="image" class="form-label">Image URL</label>
+                    <input type="url" class="form-control" name="listing[image]" placeholder="https://images.unsplash.com/...">
+                </div>
+                
+                <div class="mb-4">
+                    <label for="category" class="form-label">Category</label>
+                    <select name="listing[category]" class="form-select" required>
+                        <option value="Trending">Trending</option>
+                        <option value="Rooms">Rooms</option>
+                        <option value="Iconic Cities">Iconic Cities</option>
+                        <option value="Mountains">Mountains</option>
+                        <option value="Castles">Castles</option>
+                        <option value="Amazing Pools">Amazing Pools</option>
+                        <option value="Camping">Camping</option>
+                        <option value="Farms">Farms</option>
+                        <option value="Arctic">Arctic</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a category.</div>
+                </div>
+                
+                <div class="row">
+                    <div class="mb-4 col-md-4">
+                        <label for="price" class="form-label">Price (per night)</label>
+                        <div class="input-group">
+                            <span class="input-group-text">&#8377;</span>
+                            <input type="number" class="form-control" name="listing[price]" placeholder="2500" required min="0">
+                            <div class="invalid-feedback">Please enter a valid price.</div>
+                        </div>
+                    </div>
+                
+                    <div class="mb-4 col-md-8">
+                        <label for="country" class="form-label">Country</label>
+                        <input type="text" class="form-control" name="listing[country]" placeholder="e.g. India" required>
+                        <div class="invalid-feedback">Country name is required.</div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="location" class="form-label">Location (City, Area)</label>
+                    <input type="text" class="form-control" name="listing[location]" placeholder="e.g. Mumbai, Maharashtra" required>
+                    <div class="invalid-feedback">Location is required.</div>
+                </div>
+                
+                <button class="btn btn-primary-custom w-100 py-2 fs-5 mt-2">Add Listing</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+<%layout("/layouts/boilerplate")%>
+
+<% const categoriesList = [
+    { name: 'Trending', icon: 'fa-fire' },
+    { name: 'Rooms', icon: 'fa-bed' },
+    { name: 'Iconic Cities', icon: 'fa-mountain-city' },
+    { name: 'Mountains', icon: 'fa-mountain' },
+    { name: 'Castles', icon: 'fa-fort-awesome' },
+    { name: 'Amazing Pools', icon: 'fa-person-swimming' },
+    { name: 'Camping', icon: 'fa-campground' },
+    { name: 'Farms', icon: 'fa-tractor' },
+    { name: 'Arctic', icon: 'fa-snowflake' }
+]; %>
+
+<!-- Filters & Tax Toggle -->
+<div class="filters-main d-flex align-items-center mt-3 mb-4">
+    <div class="filter-scroll d-flex gap-4 overflow-x-auto pe-3 flex-grow-1" style="scrollbar-width: none; -ms-overflow-style: none;">
+        <a href="/listings" class="filter-item text-center text-decoration-none <%= (typeof activeCategory === 'undefined' || activeCategory === 'All') ? 'active-filter text-dark' : 'text-muted' %>">
+            <i class="fa-solid fa-border-all fs-4 mb-2"></i>
+            <p style="font-size: 0.85rem; font-weight: 500; margin: 0;">All</p>
+        </a>
+        <% for(let cat of categoriesList) { %>
+            <a href="/listings?category=<%= cat.name %>" class="filter-item text-center text-decoration-none <%= (typeof activeCategory !== 'undefined' && activeCategory === cat.name) ? 'active-filter text-dark' : 'text-muted' %>">
+                <i class="fa-solid <%= cat.icon %> fs-4 mb-2"></i>
+                <p style="font-size: 0.85rem; font-weight: 500; margin: 0;"><%= cat.name %></p>
+            </a>
+        <% } %>
+    </div>
+    
+    <div class="tax-toggle ms-3 border rounded-4 px-3 py-2 d-none d-lg-flex align-items-center gap-2 shadow-sm bg-white" style="min-width: fit-content; height: 3.5rem;">
+        <span class="fw-bold" style="font-size: 0.85rem;">Display total before taxes</span>
+        <div class="form-check form-switch m-0 fs-5">
+            <input class="form-check-input tax-switch" type="checkbox" role="switch" style="cursor: pointer;">
+        </div>
+    </div>
+</div>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <% for(let listing of allListings){ %>
+        <a class="listing-link" href="/listings/<%=listing._id%>">
+            <div class="card col listing-card">
+                <div class="card-img-wrapper">
+                    <img src="<%=listing.image%>" class="card-img-top" alt="listing-IMAGE">
+                    <div class="card-img-overlay d-flex flex-column justify-content-between p-3">
+                        <div class="d-flex justify-content-end w-100">
+                            <i class="fa-regular fa-heart text-white fs-4 heart-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <b><%=listing.title%></b><br>
+                        <% if (listing.country && listing.location) { %>
+                            <span class="text-muted"><%= listing.location %>, <%= listing.country %></span><br>
+                        <% } %>
+                        <span class="price tax-info">&#8377;<%= listing.price?.toLocaleString("en-IN") || "N/A" %></span> <span class="tax-info text-dark">/ night</span>
+                        <i class="tax-info-msg" style="display: none; font-size: 0.9rem; font-weight: 600;">&#8377;<%= (listing.price * 1.18)?.toLocaleString("en-IN") || "N/A" %> total before taxes</i>
+                    </p>
+                </div>
+            </div>
+        </a>
+    <% } %>
+</div>
+
+<script>
+    // Tax Toggle Logic
+    let taxSwitch = document.querySelector(".tax-switch");
+    if(taxSwitch) {
+        taxSwitch.addEventListener("click", () => {
+            let taxInfoElements = document.getElementsByClassName("tax-info");
+            let taxInfoMsgs = document.getElementsByClassName("tax-info-msg");
+            
+            for(let i=0; i<taxInfoElements.length; i++) {
+                if(taxInfoElements[i].style.display !== "none") {
+                    taxInfoElements[i].style.display = "none";
+                    if(taxInfoMsgs[i]) taxInfoMsgs[i].style.display = "inline";
+                } else {
+                    taxInfoElements[i].style.display = "inline";
+                    if(taxInfoMsgs[i]) taxInfoMsgs[i].style.display = "none";
+                }
+            }
+        });
+    }
+
+    // Heart Icon Click Logic (Preventing navigation)
+    let hearts = document.querySelectorAll(".heart-icon");
+    for(let heart of hearts) {
+        heart.addEventListener("click", (e) => {
+            e.preventDefault();
+            if(heart.classList.contains("fa-regular")) {
+                heart.classList.remove("fa-regular");
+                heart.classList.add("fa-solid");
+                heart.style.color = "var(--brand-color)";
+            } else {
+                heart.classList.remove("fa-solid");
+                heart.classList.add("fa-regular");
+                heart.style.color = "white";
+            }
+        });
+    }
+</script>
