@@ -12,15 +12,12 @@ const listings=require("./routes/listing.js");
 const reviews=require("./routes/review.js");
 const bookings=require("./routes/booking.js");
 
-// =====================================================================
-// 🚨 ABSOLUTELY CRITICAL: MIDDLEWARE MUST GO HERE 🚨
-// This tells Express how to read Hoppscotch data. It MUST be at the top!
-// =====================================================================
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // 2. Database Connection
-const MONGO_URL = "mongodb://admin:harry2005@127.0.0.1:27017/heavenstays?authSource=admin";
+const MONGO_URL = process.env.MONGO_URL;
 
 async function main() {
     await mongoose.connect(MONGO_URL);
@@ -55,6 +52,9 @@ app.use((err, req, res, next) => {
 });
 
 // 4. Server Listener
-app.listen(8000, () => {
-    console.log("Server running on port 8000");
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log("Server running");
 });
