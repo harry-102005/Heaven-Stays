@@ -35,11 +35,11 @@
     </div>
 </div>
 
-<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+<div class="row row-cols-xl-4 row-cols-lg-4 row-cols-md-2 row-cols-sm-2 row-cols-1 g-4 mt-1">
     <% for(let listing of allListings){ %>
         <a class="listing-link" href="/listings/<%=listing._id%>">
-            <div class="card col listing-card">
-                <div class="card-img-wrapper">
+            <div class="card col listing-card h-100">
+                <div class="card-img-wrapper" style="aspect-ratio: 1/1;">
                     <img src="<%=listing.image%>" class="card-img-top" alt="listing-IMAGE">
                     <div class="card-img-overlay d-flex flex-column justify-content-between p-3">
                         <div class="d-flex justify-content-end w-100">
@@ -47,14 +47,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <p class="card-text">
-                        <b><%=listing.title%></b><br>
-                        <% if (listing.country && listing.location) { %>
-                            <span class="text-muted"><%= listing.location %>, <%= listing.country %></span><br>
-                        <% } %>
-                        <span class="price tax-info">&#8377;<%= listing.price?.toLocaleString("en-IN") || "N/A" %></span> <span class="tax-info text-dark">/ night</span>
-                        <i class="tax-info-msg" style="display: none; font-size: 0.9rem; font-weight: 600;">&#8377;<%= (listing.price * 1.18)?.toLocaleString("en-IN") || "N/A" %> total before taxes</i>
+                <div class="card-body px-0 pt-3 pb-1">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <b class="card-title text-truncate mb-0" style="font-size: 0.95rem;">
+                            <%= listing.location %><% if(listing.country) { %>, <%= listing.country %><% } %>
+                        </b>
+                        <span style="font-size: 0.9rem;"><i class="fa-solid fa-star" style="font-size: 0.75rem;"></i> <%= (Math.random() * (5.0 - 4.2) + 4.2).toFixed(2) %></span>
+                    </div>
+                    <p class="card-text mb-0 mt-1">
+                        <span class="text-muted text-truncate d-block" style="font-size: 0.95rem;"><%=listing.title%></span>
+                        <span class="text-muted d-block" style="font-size: 0.95rem;">Added recently</span>
+                        <div class="mt-1" style="font-size: 0.95rem;">
+                            <span class="price tax-info fw-bold text-dark">&#8377;<%= listing.price?.toLocaleString("en-IN") || "N/A" %></span> <span class="tax-info text-dark">night</span>
+                            <i class="tax-info-msg text-decoration-underline text-dark" style="display: none; font-weight: 500;">&#8377;<%= Math.round(listing.price * 1.18)?.toLocaleString("en-IN") || "N/A" %> total</i>
+                        </div>
                     </p>
                 </div>
             </div>

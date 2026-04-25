@@ -48,7 +48,9 @@ router.get("/new", (req, res) => {
 //Show Route
 router.get("/:id", wrapAsync(async (req, res) => {
     let { id } = req.params;
-    const listing = await Listing.findById(id).populate("reviews");/*replace a referenced ObjectId with the actual document data from another collection.*/
+    const listing = await Listing.findById(id)
+        .populate("reviews")
+        .populate("bookings");
     res.render("listings/show.ejs", { listing });
 }));
 

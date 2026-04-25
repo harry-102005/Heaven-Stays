@@ -9,8 +9,9 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 
 const listings=require("./routes/listing.js");
-
 const reviews=require("./routes/review.js");
+const bookings=require("./routes/booking.js");
+
 // =====================================================================
 // 🚨 ABSOLUTELY CRITICAL: MIDDLEWARE MUST GO HERE 🚨
 // This tells Express how to read Hoppscotch data. It MUST be at the top!
@@ -45,6 +46,7 @@ app.get("/", (req, res) => {
 
 app.use("/listings",listings)
 app.use("/listings/:id/reviews",reviews);
+app.use("/listings/:id/bookings",bookings);
 
 // ERROR HANDLING MIDDLEWARE
 app.use((err, req, res, next) => {

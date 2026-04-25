@@ -231,6 +231,90 @@ const sampleListings = [
     location: "Costa Rica",
     country: "Costa Rica",
   },
+  {
+    title: "Taj Lake Palace",
+    description: "Experience royal luxury floating on Lake Pichola in this stunning marble palace.",
+    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    price: 35000,
+    location: "Udaipur",
+    country: "India",
+  },
+  {
+    title: "The Oberoi Amarvilas",
+    description: "Wake up to uninterrupted views of the Taj Mahal from this luxurious Agra resort.",
+    image: "https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    price: 45000,
+    location: "Agra",
+    country: "India",
+  },
+  {
+    title: "Himalayan Retreat",
+    description: "Cozy up in this beautiful wooden cabin overlooking the snow-capped Himalayan mountains.",
+    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    price: 5500,
+    location: "Manali",
+    country: "India",
+  },
+  {
+    title: "Goa Beachfront Villa",
+    description: "Step straight from your private pool onto the white sands of Palolem beach.",
+    image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    price: 12000,
+    location: "Goa",
+    country: "India",
+  },
+  {
+    title: "Kerala Backwaters Houseboat",
+    description: "Drift peacefully through the lush backwaters of Kerala in a traditional luxury houseboat.",
+    image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    price: 8000,
+    location: "Alleppey",
+    country: "India",
+  },
+  {
+    title: "Desert Camp Getaway",
+    description: "Sleep under the stars in luxurious Swiss tents surrounded by the golden sands of the Thar Desert.",
+    image: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    price: 4500,
+    location: "Jaisalmer",
+    country: "India",
+  },
+  {
+    title: "Luxury Safari Tent",
+    description: "Immerse yourself in wildlife in this opulent tent on the edge of Ranthambore National Park.",
+    image: "https://images.unsplash.com/photo-1534162985169-270830423789?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    price: 15000,
+    location: "Ranthambore",
+    country: "India",
+  },
+  {
+    title: "Heritage Haveli",
+    description: "Live like a Maharaja in this beautifully restored pink-stone haveli right in the heart of the Pink City.",
+    image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    price: 9500,
+    location: "Jaipur",
+    country: "India",
+  },
+  {
+    title: "Coffee Estate Homestay",
+    description: "Wake up to the aroma of fresh coffee beans nestled among misty rolling hills and dense forests.",
+    image: "https://images.unsplash.com/photo-1510861320402-285a6c7639ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    price: 3500,
+    location: "Coorg",
+    country: "India",
+  },
+  {
+    title: "Andaman Island Resort",
+    description: "Crystal clear water, coral reefs, and private beach access await you at this exclusive tropical resort.",
+    image: "https://images.unsplash.com/photo-1540541338287-41700207dee6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
+    price: 18000,
+    location: "Havelock Island",
+    country: "India",
+  }
 ];
+const categories = ['Trending', 'Rooms', 'Iconic Cities', 'Mountains', 'Castles', 'Amazing Pools', 'Camping', 'Farms', 'Arctic'];
+sampleListings.forEach(listing => {
+    listing.category = categories[Math.floor(Math.random() * categories.length)];
+});
 
 module.exports = { data: sampleListings };
